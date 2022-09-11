@@ -1,0 +1,21 @@
+fictional historical figure generator.
+
+so we need a bank of names, a wide variety of accomplishments, and the ability to generate random dates that
+they happened.
+
+example. Louis the Conquerer (1492 - 2004) was the king of Yugoslavia. He had five dogs.
+
+[generate random accomplishments within the date range of his life]
+[first one should be where they were born, last is how they died]
+1492: born in Sicily
+1507: Defeated the spanish armada
+1706: Erected monument to himself in Guam
+2004: died peacefully in bed
+
+ok so we need banks of things. things we need include:
+-names. first names & last names or alternately titles.
+-date generator. generates dates within a reasonable human lifespan.
+-jobs. why are they noteable? were they monarchs or artists or officials in some other capacity?
+-places. countries probably, maybe cities.
+-things they did, maybe sorted by job?
+-causes of death.

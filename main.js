@@ -29,12 +29,72 @@ const countries = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'An
                    'United Arab Emirates', 'United Kingdom', 'United States of America', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia',
                    'Zimbabwe']
 
+const occupations = ['King', 'Queen', 'musician', 'painter', 'sculptor', 'general', 'physicist', 'poet', 'astronaut', 'explorer', 'admiral', 'athlete','author', 'philosopher']
+
+const verbs = ['conquered', 'created', 'authored', 'discovered', 'founded', 'developed', 'declared', 'traveled to']
+
+const things = ['9/11', 'The Spanish Armada', 'World War II', 'a monument', 'the moon', 'an industrial revolution', 'Donkey Kong Country', 'communism']
+
+const causesOfDeath = ['Covid', 'Smallpox', 'shot to death', 'poisoned', 'executed by lethal injection', 'guilloutined', 'natural causes', 'starvation', 'dysentery']
+
 function generateLifespan() {
     //generate a birthdate and then a death date in an array. death date is 30-80 years after birthdate.
     const birthDate = Math.floor(Math.random() * 2000);
-    const deathDate = birthDate + 35 + Math.floor(Math.random() *50);
+    let deathDate = birthDate + 35 + Math.floor(Math.random() *50);
+    if (deathDate > 2022) {
+        deathDate = 2022;
+    }
     const deathAge = deathDate - birthDate;
     return [birthDate, deathDate, deathAge];
 }
 
-console.log(generateLifespan());
+function generateNames() {
+    const first = firstNames[Math.floor(Math.random() * firstNames.length)];
+    const last = lastNames[Math.floor(Math.random() * lastNames.length)];
+    return [first, last];
+}
+
+function generateEvent(birth, death, startDate) {
+    const date = startDate + (Math.floor(Math.random() * (death - startDate)));
+    const verb = verbs[Math.floor(Math.random() * verbs.length)];
+    const thing = things[Math.floor(Math.random() * things.length)];
+    const locationCheck = Math.random();
+    if (locationCheck < 0.5) {
+        return [`${date}: ${verb} ${thing}.`, date]
+    }
+    else {
+        const place = countries[Math.floor(Math.random() * countries.length)];
+        return [`${date}: ${verb} ${thing} in ${place}.`, date]
+    }
+}
+
+function generateBirth(birthday) {
+    const place = countries[Math.floor(Math.random() * countries.length)];
+    return `${birthday}: born in ${place}.`
+
+}
+
+function generateDeath(deathDay) {
+    const place = countries[Math.floor(Math.random() * countries.length)];
+    const cause = causesOfDeath[Math.floor(Math.random() * causesOfDeath.length)];
+    return `${deathDay}: died in ${place} of ${cause}.`
+}
+
+function generatePerson() {
+    const dates = generateLifespan();
+    const name = generateNames();
+    const numEvents = 1 + Math.floor(Math.random() * 5);
+    console.log(`${name[0]} ${name[1]} (${dates[0]} - ${dates[1]}):`);
+    console.log('-------------------------');
+    console.log(generateBirth(dates[0]));
+    let startDate = dates[0];
+    for (let i = 0; i < numEvents; i++) {
+        let event = generateEvent(dates[0], dates[1], startDate);
+        startDate = event[1];
+        console.log(event[0]);
+
+    }
+    console.log(generateDeath(dates[1]));
+}
+
+generatePerson();

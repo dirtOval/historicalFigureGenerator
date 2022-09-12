@@ -13,9 +13,9 @@ example. Louis the Conquerer (1492 - 2004) was the king of Yugoslavia. He had fi
 2004: died peacefully in bed
 
 ok so we need banks of things. things we need include:
--names. first names & last names or alternately titles.
+-names. first names & last names or alternately titles. check
 -date generator. generates dates within a reasonable human lifespan.
 -jobs. why are they noteable? were they monarchs or artists or officials in some other capacity?
--places. countries probably, maybe cities.
+-places. countries probably, maybe cities. check
 -things they did, maybe sorted by job?
 -causes of death.

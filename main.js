@@ -29,13 +29,18 @@ const countries = ['Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'An
                    'United Arab Emirates', 'United Kingdom', 'United States of America', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia',
                    'Zimbabwe']
 
-const occupations = ['King', 'Queen', 'musician', 'painter', 'sculptor', 'general', 'physicist', 'poet', 'astronaut', 'explorer', 'admiral', 'athlete','author', 'philosopher']
+const occupations = ['King', 'Queen', 'President', 'Prime Minister', 'musician', 'painter', 'sculptor', 'general', 'physicist', 'poet', 'astronaut', 'explorer', 'admiral', 'athlete','author', 'philosopher',
+                     'biologist', 'activist', 'politician', 'inventor', 'taxidermist', 'labor organizer']
 
-const verbs = ['conquered', 'created', 'authored', 'discovered', 'founded', 'developed', 'declared', 'traveled to']
+const verbs = ['conquered', 'created', 'authored', 'discovered', 'founded', 'developed', 'declared', 'traveled to', 'invented', 'started', 'participated in', 'initiated',
+               'perpetrated', 'instigated', 'birthed', 'invested in', 'promoted', 'publicly condemned']
 
-const things = ['9/11', 'The Spanish Armada', 'World War II', 'a monument', 'the moon', 'an industrial revolution', 'Donkey Kong Country', 'communism']
+const things = ['9/11', 'The Spanish Armada', 'World War II', 'a monument', 'the moon', 'an industrial revolution', 'Donkey Kong Country', 'communism', 'gravity', 'the guilloutine',
+                'Christmas', 'a well-reviewed children\'s book', `${countries[Math.floor(Math.random()*countries.length)]}`, '100 Gecs', 'Minecraft', 'The Spanish Civil War',
+                'the Olympics', 'video games']
 
-const causesOfDeath = ['Covid', 'Smallpox', 'shot to death', 'poisoned', 'executed by lethal injection', 'guilloutined', 'natural causes', 'starvation', 'dysentery']
+const causesOfDeath = ['of Covid', 'of Smallpox', 'by gunshot', 'due to poison', 'by lethal injection', 'by guilloutine', 'due to natural causes', 'of starvation', 'of dysentery',
+                       'by execution', 'peacefully in their sleep', 'choking on an orange peel', ' due to shark attack', 'of blood poisoning', 'of infection', 'of an aneurysm']
 
 function generateLifespan() {
     //generate a birthdate and then a death date in an array. death date is 30-80 years after birthdate.
@@ -74,17 +79,21 @@ function generateBirth(birthday) {
 
 }
 
-function generateDeath(deathDay) {
+function generateDeath(deathDay, deathAge) {
     const place = countries[Math.floor(Math.random() * countries.length)];
     const cause = causesOfDeath[Math.floor(Math.random() * causesOfDeath.length)];
-    return `${deathDay}: died in ${place} of ${cause}.`
+    return `${deathDay}: died ${cause} in ${place} at the age of ${deathAge}.`
 }
 
 function generatePerson() {
     const dates = generateLifespan();
     const name = generateNames();
     const numEvents = 1 + Math.floor(Math.random() * 5);
-    console.log(`${name[0]} ${name[1]} (${dates[0]} - ${dates[1]}):`);
+    let occupation = occupations[Math.floor(Math.random() * occupations.length)]
+    if (occupation === 'King' || occupation === 'Queen' || occupation === 'President' || occupation === 'Prime Minister') {
+        occupation += ` of ${countries[Math.floor(Math.random() * countries.length)]}`
+    }
+    console.log(`${name[0]} ${name[1]} (${dates[0]} - ${dates[1]}), ${occupation}:`);
     console.log('-------------------------');
     console.log(generateBirth(dates[0]));
     let startDate = dates[0];
@@ -94,7 +103,7 @@ function generatePerson() {
         console.log(event[0]);
 
     }
-    console.log(generateDeath(dates[1]));
+    console.log(generateDeath(dates[1], dates[2]));
 }
 
 generatePerson();
